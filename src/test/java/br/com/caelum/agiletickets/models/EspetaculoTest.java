@@ -212,6 +212,39 @@ public class EspetaculoTest {
 		
 	}
 	
+	@Test
+	public void verificaQuantidadeEspetaculoQuinzena() throws Exception {
+		Espetaculo espetaculo = new Espetaculo();
+		
+		DateTime agora = new DateTime();
+		DateTime agoraMais40Dias = agora.plusDays(40);
+		LocalDate inicio = agora.toLocalDate();
+		LocalDate fim = agoraMais40Dias.toLocalDate();
+		LocalTime horario = agora.toLocalTime();
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, Periodicidade.QUINZENAL);
+		
+		Assert.assertEquals(3, sessoes.size());
+		
+		
+	}
+	
+	@Test
+	public void verificaQuantidadeEspetaculoMensal() throws Exception {
+		Espetaculo espetaculo = new Espetaculo();
+		
+		DateTime agora = new DateTime();
+		DateTime agoraMais40Dias = agora.plusDays(40);
+		LocalDate inicio = agora.toLocalDate();
+		LocalDate fim = agoraMais40Dias.toLocalDate();
+		LocalTime horario = agora.toLocalTime();
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, Periodicidade.MENSAL);
+		
+		Assert.assertEquals(2, sessoes.size());
+		
+		
+	}
 	
 	private Sessao sessaoComIngressosSobrando(int quantidade) {
 		Sessao sessao = new Sessao();
